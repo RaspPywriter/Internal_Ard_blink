@@ -1,0 +1,293 @@
+#open a file
+> WHO = read.csv("WHO.csv")
+#get info about the file
+> str(WHO)
+'data.frame':   194 obs. of  13 variables:
+ $ Country                      : Factor w/ 194 levels "Afghanistan",..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ Region                       : Factor w/ 6 levels "Africa","Americas",..: 3 4 1 4 1 2 2 4 6 4 ...
+ $ Population                   : int  29825 3162 38482 78 20821 89 41087 2969 23050 8464 ...
+ $ Under15                      : num  47.4 21.3 27.4 15.2 47.6 ...
+ $ Over60                       : num  3.82 14.93 7.17 22.86 3.84 ...
+ $ FertilityRate                : num  5.4 1.75 2.83 NA 6.1 2.12 2.2 1.74 1.89 1.44 ...
+ $ LifeExpectancy               : int  60 74 73 82 51 75 76 71 82 81 ...
+ $ ChildMortality               : num  98.5 16.7 20 3.2 163.5 ...
+ $ CellularSubscribers          : num  54.3 96.4 99 75.5 48.4 ...
+ $ LiteracyRate                 : num  NA NA NA NA 70.1 99 97.8 99.6 NA NA ...
+ $ GNI                          : num  1140 8820 8310 NA 5230 ...
+ $ PrimarySchoolEnrollmentMale  : num  NA NA 98.2 78.4 93.1 91.1 NA NA 96.9 NA ...
+ $ PrimarySchoolEnrollmentFemale: num  NA NA 96.4 79.4 78.2 84.5 NA NA 97.5 NA ...
+ #statistics for WHO file
+> summary(WHO)
+                Country                      Region     Population     
+ Afghanistan        :  1   Africa               :46   Min.   :      1  
+ Albania            :  1   Americas             :35   1st Qu.:   1696  
+ Algeria            :  1   Eastern Mediterranean:22   Median :   7790  
+ Andorra            :  1   Europe               :53   Mean   :  36360  
+ Angola             :  1   South-East Asia      :11   3rd Qu.:  24535  
+ Antigua and Barbuda:  1   Western Pacific      :27   Max.   :1390000  
+ (Other)            :188                                               
+    Under15          Over60      FertilityRate   LifeExpectancy 
+ Min.   :13.12   Min.   : 0.81   Min.   :1.260   Min.   :47.00  
+ 1st Qu.:18.72   1st Qu.: 5.20   1st Qu.:1.835   1st Qu.:64.00  
+ Median :28.65   Median : 8.53   Median :2.400   Median :72.50  
+ Mean   :28.73   Mean   :11.16   Mean   :2.941   Mean   :70.01  
+ 3rd Qu.:37.75   3rd Qu.:16.69   3rd Qu.:3.905   3rd Qu.:76.00  
+ Max.   :49.99   Max.   :31.92   Max.   :7.580   Max.   :83.00  
+                                 NA's   :11                     
+ ChildMortality    CellularSubscribers  LiteracyRate        GNI       
+ Min.   :  2.200   Min.   :  2.57      Min.   :31.10   Min.   :  340  
+ 1st Qu.:  8.425   1st Qu.: 63.57      1st Qu.:71.60   1st Qu.: 2335  
+ Median : 18.600   Median : 97.75      Median :91.80   Median : 7870  
+ Mean   : 36.149   Mean   : 93.64      Mean   :83.71   Mean   :13321  
+ 3rd Qu.: 55.975   3rd Qu.:120.81      3rd Qu.:97.85   3rd Qu.:17558  
+ Max.   :181.600   Max.   :196.41      Max.   :99.80   Max.   :86440  
+                   NA's   :10          NA's   :91      NA's   :32     
+ PrimarySchoolEnrollmentMale PrimarySchoolEnrollmentFemale
+ Min.   : 37.20              Min.   : 32.50               
+ 1st Qu.: 87.70              1st Qu.: 87.30               
+ Median : 94.70              Median : 95.10               
+ Mean   : 90.85              Mean   : 89.63               
+ 3rd Qu.: 98.10              3rd Qu.: 97.90               
+ Max.   :100.00              Max.   :100.00               
+ NA's   :93                  NA's   :93   
+ #only get europe from file
+> WHO_Europe = subset(WHO,Region == "Europe")
+> WHO_Europe
+                                      Country Region Population Under15 Over60
+2                                     Albania Europe       3162   21.33  14.93
+4                                     Andorra Europe         78   15.20  22.86
+8                                     Armenia Europe       2969   20.34  14.06
+10                                    Austria Europe       8464   14.51  23.52
+11                                 Azerbaijan Europe       9309   22.25   8.24
+16                                    Belarus Europe       9405   15.10  19.31
+17                                    Belgium Europe      11060   16.88  23.81
+22                     Bosnia and Herzegovina Europe       3834   16.35  20.52
+26                                   Bulgaria Europe       7278   13.53  26.11
+43                                    Croatia Europe       4307   14.98  24.69
+45                                     Cyprus Europe       1129   17.16  16.92
+46                             Czech Republic Europe      10660   14.56  23.23
+49                                    Denmark Europe       5598   17.66  23.90
+58                                    Estonia Europe       1291   15.69  23.92
+61                                    Finland Europe       5408   16.42  25.90
+62                                     France Europe      63937   18.26  23.82
+65                                    Georgia Europe       4358   17.62  19.47
+66                                    Germany Europe      82800   13.17  26.72
+68                                     Greece Europe      11125   14.60  25.41
+76                                    Hungary Europe       9976   14.62  23.41
+77                                    Iceland Europe        326   20.71  17.62
+82                                    Ireland Europe       4576   21.54  16.59
+83                                     Israel Europe       7644   27.53  15.15
+84                                      Italy Europe      60885   14.04  26.97
+88                                 Kazakhstan Europe      16271   25.46  10.04
+92                                 Kyrgyzstan Europe       5474   30.21   6.34
+94                                     Latvia Europe       2060   14.57  24.24
+99                                  Lithuania Europe       3028   15.13  20.57
+100                                Luxembourg Europe        524   17.46  19.15
+106                                     Malta Europe        428   14.98  22.87
+112                                    Monaco Europe         38   18.26  23.82
+114                                Montenegro Europe        621   19.01  18.58
+121                               Netherlands Europe      16714   17.21  23.02
+127                                    Norway Europe       4994   18.64  21.41
+136                                    Poland Europe      38211   14.91  20.48
+137                                  Portugal Europe      10604   14.92  24.39
+140                       Republic of Moldova Europe       3514   16.52  16.72
+141                                   Romania Europe      21755   15.05  20.66
+142                        Russian Federation Europe     143000   15.45  18.60
+148                                San Marino Europe         31   14.04  26.97
+152                                    Serbia Europe       9553   16.45  20.52
+156                                  Slovakia Europe       5446   15.00  18.60
+157                                  Slovenia Europe       2068   14.16  23.16
+162                                     Spain Europe      46755   15.20  22.86
+167                                    Sweden Europe       9511   16.71  25.32
+168                               Switzerland Europe       7997   14.79  23.25
+170                                Tajikistan Europe       8009   35.75   4.80
+172 The former Yugoslav Republic of Macedonia Europe       2106   16.89  17.56
+178                                    Turkey Europe      73997   26.00  10.56
+179                              Turkmenistan Europe       5173   28.65   6.30
+182                                   Ukraine Europe      45530   14.18  20.76
+184                            United Kingdom Europe      62783   17.54  23.06
+188                                Uzbekistan Europe      28541   28.90   6.38
+    FertilityRate LifeExpectancy ChildMortality CellularSubscribers
+2            1.75             74           16.7               96.39
+4              NA             82            3.2               75.49
+8            1.74             71           16.4              103.57
+10           1.44             81            4.0              154.78
+11           1.96             71           35.2              108.75
+16           1.47             71            5.2              111.88
+17           1.85             80            4.2              116.61
+22           1.26             76            6.7               84.52
+26           1.51             74           12.1              140.68
+43           1.48             77            4.7              116.37
+45           1.47             81            3.2               97.71
+46           1.53             78            3.8              123.44
+49           1.88             79            3.7              128.47
+58           1.62             76            3.6              138.98
+61           1.85             81            2.9              166.02
+62           1.98             82            4.1               94.79
+65           1.82             72           19.9              102.31
+66           1.40             81            4.1              132.30
+68           1.51             81            4.8              106.48
+76           1.38             75            6.2              117.30
+77           2.11             82            2.3              106.08
+82           2.00             81            4.0              108.41
+83           2.92             82            4.2              121.66
+84           1.45             82            3.8              157.93
+88           2.52             67           18.7              155.74
+92           3.03             69           26.6              116.40
+94           1.57             74            8.7              102.94
+99           1.49             74            5.4              151.30
+100          1.65             82            2.2              148.27
+106          1.37             80            6.8              124.86
+112            NA             82            3.8               89.73
+114          1.69             76            5.9                  NA
+121          1.76             81            4.1                  NA
+127          1.93             81            2.8              115.62
+136          1.39             76            5.0              130.97
+137          1.33             80            3.6              115.39
+140          1.47             71           17.6              104.80
+141          1.39             74           12.2              109.16
+142          1.51             69           10.3              179.31
+148            NA             83            3.3              111.75
+152          1.37             74            6.6              125.39
+156          1.37             76            7.5              109.35
+157          1.49             80            3.1              106.56
+162          1.47             82            4.5              113.22
+167          1.93             82            2.9              118.57
+168          1.51             83            4.3              131.43
+170          3.81             68           58.3               90.64
+172          1.44             75            7.4              107.24
+178          2.08             76           14.2               88.70
+179          2.38             63           52.8               68.77
+182          1.45             71           10.7              122.98
+184          1.90             80            4.8              130.75
+188          2.38             68           39.6               91.65
+    LiteracyRate   GNI PrimarySchoolEnrollmentMale
+2             NA  8820                          NA
+4             NA    NA                        78.4
+8           99.6  6100                          NA
+10            NA 42050                          NA
+11            NA  8960                        85.3
+16            NA 14460                          NA
+17            NA 39190                        98.9
+22          97.9  9190                        86.5
+26            NA 14160                        99.3
+43          98.8 18760                        94.8
+45          98.3    NA                        99.1
+46            NA 24370                          NA
+49            NA 41900                        94.8
+58          99.8 20850                        97.7
+61            NA 37670                        97.7
+62            NA 35910                        99.1
+65          99.7  5350                          NA
+66            NA 40230                          NA
+68          97.2 25100                        98.8
+76          99.0 20310                        97.8
+77            NA 31020                        98.8
+82            NA 34180                        99.4
+83            NA 27110                        97.0
+84          98.9 32400                        99.6
+88          99.7 11250                          NA
+92            NA  2180                        95.5
+94          99.8 17700                        95.0
+99          99.7 19640                        95.6
+100           NA 64260                        93.6
+106           NA    NA                        93.3
+112           NA    NA                          NA
+114         98.4 13700                          NA
+121           NA 43140                          NA
+127           NA 61460                        99.1
+136         99.5 20430                        96.9
+137         95.2 24440                        99.1
+140         98.5  3640                        90.1
+141         97.7 15120                        87.9
+142         99.6 20560                          NA
+148           NA    NA                          NA
+152         97.9 11540                        94.7
+156           NA 22130                          NA
+157         99.7 26510                        97.7
+162         97.7 31400                        99.7
+167           NA 42200                        99.7
+168           NA 52570                        98.9
+170         99.7  2300                        99.5
+172         97.3 11090                        97.3
+178           NA 16940                        99.5
+179         99.6  8690                          NA
+182         99.7  7040                        90.8
+184           NA 36010                        99.8
+188         99.4  3420                        93.3
+    PrimarySchoolEnrollmentFemale
+2                              NA
+4                            79.4
+8                              NA
+10                             NA
+11                           84.1
+16                             NA
+17                           99.2
+22                           88.4
+26                           99.7
+43                           97.0
+45                           99.5
+46                             NA
+49                           96.9
+58                           97.0
+61                           97.9
+62                           99.3
+65                             NA
+66                             NA
+68                           99.3
+76                           98.3
+77                           99.2
+82                          100.0
+83                           97.8
+84                           98.5
+88                             NA
+92                           95.1
+94                           96.8
+99                           95.8
+100                          95.7
+106                          94.3
+112                            NA
+114                            NA
+121                            NA
+127                          99.2
+136                          96.7
+137                          99.7
+140                          90.1
+141                          87.3
+142                            NA
+148                            NA
+152                          94.4
+156                            NA
+157                          97.3
+162                          99.8
+167                          99.0
+168                          99.5
+170                          96.0
+172                          99.2
+178                          98.3
+179                            NA
+182                          91.5
+184                          99.6
+188                          91.0
+> str(WHO_Europe)
+'data.frame':   53 obs. of  13 variables:
+ $ Country                      : Factor w/ 194 levels "Afghanistan",..: 2 4 8 10 11 16 17 22 26 42 ...
+ $ Region                       : Factor w/ 6 levels "Africa","Americas",..: 4 4 4 4 4 4 4 4 4 4 ...
+ $ Population                   : int  3162 78 2969 8464 9309 9405 11060 3834 7278 4307 ...
+ $ Under15                      : num  21.3 15.2 20.3 14.5 22.2 ...
+ $ Over60                       : num  14.93 22.86 14.06 23.52 8.24 ...
+ $ FertilityRate                : num  1.75 NA 1.74 1.44 1.96 1.47 1.85 1.26 1.51 1.48 ...
+ $ LifeExpectancy               : int  74 82 71 81 71 71 80 76 74 77 ...
+ $ ChildMortality               : num  16.7 3.2 16.4 4 35.2 5.2 4.2 6.7 12.1 4.7 ...
+ $ CellularSubscribers          : num  96.4 75.5 103.6 154.8 108.8 ...
+ $ LiteracyRate                 : num  NA NA 99.6 NA NA NA NA 97.9 NA 98.8 ...
+ $ GNI                          : num  8820 NA 6100 42050 8960 ...
+ $ PrimarySchoolEnrollmentMale  : num  NA 78.4 NA NA 85.3 NA 98.9 86.5 99.3 94.8 ...
+ $ PrimarySchoolEnrollmentFemale: num  NA 79.4 NA NA 84.1 NA 99.2 88.4 99.7 97 ...
+> write.csv(WHO_Europe, "WHO_Europe.csv")
+> ls()
+ [1] "AllCountryData" "Country"        "CountryData"    "HoursYear"     
+ [5] "LifeExpectancy" "NewCountryData" "Population"     "SquareRoot2"   
+ [9] "WHO"            "WHO_Europe"    
+
+
