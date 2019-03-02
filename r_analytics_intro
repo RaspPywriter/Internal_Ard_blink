@@ -91,5 +91,6 @@ starting httpd help server ... done
 5         USA             79     318000
 6   Australia             82      23050
 7      Greece             81      11125
-> 
-
+#find where you are
+> getwd()
+[1] "C:/Users/Documents/Study Materials/R"
