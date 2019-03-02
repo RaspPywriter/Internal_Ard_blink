@@ -1,0 +1,27 @@
+r editor practice exercises
+> 8*6
+[1] 48
+> 2^16
+[1] 65536
+> 2^
++ 4
+[1] 16
+> 8*6
+[1] 48
+> 8*10
+[1] 80
+> sqrt(2)
+[1] 1.414214
+> abs(-65)
+[1] 65
+> ?sqrt
+starting httpd help server ... done
+> SquareRoot2 = sqrt(2)
+> SquareRoot2
+[1] 1.414214
+> HoursYear = 365*24
+> HoursYear
+[1] 8760
+> ls()
+[1] "HoursYear"   "SquareRoot2"
+> 
