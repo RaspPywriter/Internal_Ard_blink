@@ -1,0 +1,47 @@
+WHO = read.csv("WHO.csv")
+> WHO$CellularSubscribers
+  [1]  54.26  96.39  98.99  75.49  48.38 196.41 134.92 103.57 108.34 154.78
+ [11] 108.75  86.06 127.96  56.06 127.01 111.88 116.61  69.96  85.33  65.58
+ [21]  82.82  84.52 142.82 124.26 109.17 140.68  45.27  22.33  96.17  52.35
+ [31]  79.73  79.19  40.65  31.80 129.71  73.19  98.45  28.71  93.84     NA
+ [41]  92.20  86.06 116.37  11.69  97.71 123.44   4.09  23.09 128.47  21.32
+ [51] 164.02  87.22 104.55 101.08 133.54  59.15   4.47 138.98  16.67  83.72
+ [61] 166.02  94.79 117.32  78.89 102.31 132.30  84.78 106.48     NA 140.38
+ [71]  44.02  56.18  69.94  41.49 103.97 117.30 106.08  72.00 103.09  74.93
+ [81]  78.12 108.41 121.66 157.93 108.12 104.95 118.20 155.74  67.49  13.64
+ [91] 175.09 116.40  87.16 102.94  78.65  56.17  49.17 155.70 151.30 148.27
+[101]  40.65  25.69 127.04 165.72  68.32 124.86     NA  93.60  99.04  82.38
+[111]     NA  89.73 105.08     NA 113.26  32.83   2.57  96.39  65.00  43.81
+[121]     NA 109.19  82.15  29.52  58.58     NA 115.62 168.97  61.61  74.94
+[131] 188.60  34.22  99.40 110.41  99.30 130.97 115.39 123.11 108.50 104.80
+[141] 109.16 179.31  40.63     NA 123.00 120.52     NA 111.75  68.26 191.24
+[151]  73.25 125.39 145.71  35.63 150.24 109.35 106.56  49.77   6.85 126.83
+[161]     NA 113.22  87.05  56.14 178.88  63.70 118.57 131.43  63.17  90.64
+[171] 111.63 107.24  53.23  50.45  52.63 135.64 116.93  88.70  68.77  21.63
+[181]  48.38 122.98 148.62 130.75  55.53  92.72 140.75  91.65  55.76  97.78
+[191] 143.39  47.05  60.59  72.13
+> hist(WHO$CellularSubscribers)
+> boxplot(WHO$LifeExpectancy ~ WHO$Region)
+> boxplot(WHO$LifeExpectancy ~ WHO$Region, xlab="", ylab="Life Expectancy", main="Life Expectancy of Countries by Region")
+> table(WHO$Region)
+
+               Africa              Americas Eastern Mediterranean 
+                   46                    35                    22 
+               Europe       South-East Asia       Western Pacific 
+                   53                    11                    27 
+> tapply(WHO$Over60, WHO$Region, mean)
+               Africa              Americas Eastern Mediterranean 
+             5.220652             10.943714              5.620000 
+               Europe       South-East Asia       Western Pacific 
+            19.774906              8.769091             10.162963 
+> tapply(WHO$LiteracyRate, WHO$Region, min)
+               Africa              Americas Eastern Mediterranean 
+                   NA                    NA                    NA 
+               Europe       South-East Asia       Western Pacific 
+                   NA                    NA                    NA 
+> tapply(WHO$LiteracyRate, WHO$Region, min, na.rm=TRUE)
+               Africa              Americas Eastern Mediterranean 
+                 31.1                  75.2                  63.9 
+               Europe       South-East Asia       Western Pacific 
+                 95.2                  56.8                  60.6 
+> 
