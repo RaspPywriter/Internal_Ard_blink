@@ -155,7 +155,19 @@ Type 'q()' to quit R.
 [1] 4154
 > USDA$Sodium[4154]
 [1] 1500
+ #shows you how to do it in one step - put match into sodium vector
 > USDA$Sodium[match("CAVIAR", USDA$Description)]
 [1] 1500
-> #shows you how to do it in one step - put match into sodium vector
+>#get summary for Sodium dataframe
+> summary(USDA$Sodium)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    0.0    37.0    79.0   322.1   386.0 38758.0      84 
+> #get standard deviation
+> sd(USAD$Sodium)
+Error in is.data.frame(x) : object 'USAD' not found
+> sd(USDA$Sodium)
+[1] NA
+> #remove NA values
+> sd(USDA$Sodium, na.rm=TRUE)
+[1] 1045.417
 > 
