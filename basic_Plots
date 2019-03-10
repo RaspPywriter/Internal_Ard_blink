@@ -1,0 +1,17 @@
+ #plotting in R
+> #create a scatterplot with Protein on x-axis and Fat on the y-axis
+> plot(USDA$Protein, USDA$TotalFat)
+> plot(USDA$Protein, USDA$TotalFat, xlab = "Protein", ylab="Fat")
+> plot(USDA$Protein, USDA$TotalFat, xlab = "Protein", ylab="Fat", main="Protein vs Fat", col = "red")
+> #create a histogram of vit c
+> hist(USDA$VitaminC, xlab= "Vitamin C (mg)", main = "Histogram of Vitamin C Levels")
+> hist(USDA$VitaminC, xlab= "Vitamin C (mg)", main = "Histogram of Vitamin C Levels", xlim = c(0, 100))
+> #that gives us a smaller graph, still doesn't work - need to create divisions
+> hist(USDA$VitaminC, xlab= "Vitamin C (mg)", main = "Histogram of Vitamin C Levels", xlim = c(0, 100), breaks=100)
+> #still not appearing correctly
+> hist(USDA$VitaminC, xlab= "Vitamin C (mg)", main = "Histogram of Vitamin C Levels", xlim = c(0, 100), breaks=2000))
+Error: unexpected ')' in "hist(USDA$VitaminC, xlab= "Vitamin C (mg)", main = "Histogram of Vitamin C Levels", xlim = c(0, 100), breaks=2000))"
+> hist(USDA$VitaminC, xlab= "Vitamin C (mg)", main = "Histogram of Vitamin C Levels", xlim = c(0, 100), breaks=2000)
+> # use boxplot
+> boxplot(USDA$Sugar, main = "Boxplot of Sugar Levels", ylab= "Sugar (g)")
+> #average of sugar is low but we have a lot of outliers
