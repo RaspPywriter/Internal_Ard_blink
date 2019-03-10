@@ -1,0 +1,161 @@
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> getwd()
+[1] "C:/Users/marie/Downloads"
+> USDA = read.csv("USDA.csv")
+#get info about the USDA file (headings, etc)
+> str(USDA)
+'data.frame':   7058 obs. of  16 variables:
+ $ ID          : int  1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 ...
+ $ Description : Factor w/ 7054 levels "ABALONE,MIXED SPECIES,RAW",..: 1303 1302 1298 2303 2304 2305 2306 2307 2308 2309 ...
+ $ Calories    : int  717 717 876 353 371 334 300 376 403 387 ...
+ $ Protein     : num  0.85 0.85 0.28 21.4 23.24 ...
+ $ TotalFat    : num  81.1 81.1 99.5 28.7 29.7 ...
+ $ Carbohydrate: num  0.06 0.06 0 2.34 2.79 0.45 0.46 3.06 1.28 4.78 ...
+ $ Sodium      : int  714 827 2 1395 560 629 842 690 621 700 ...
+ $ SaturatedFat: num  51.4 50.5 61.9 18.7 18.8 ...
+ $ Cholesterol : int  215 219 256 75 94 100 72 93 105 103 ...
+ $ Sugar       : num  0.06 0.06 0 0.5 0.51 0.45 0.46 NA 0.52 NA ...
+ $ Calcium     : int  24 24 4 528 674 184 388 673 721 643 ...
+ $ Iron        : num  0.02 0.16 0 0.31 0.43 0.5 0.33 0.64 0.68 0.21 ...
+ $ Potassium   : int  24 26 5 256 136 152 187 93 98 95 ...
+ $ VitaminC    : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ VitaminE    : num  2.32 2.32 2.8 0.25 0.26 0.24 0.21 NA 0.29 NA ...
+ $ VitaminD    : num  1.5 1.5 1.8 0.5 0.5 0.5 0.4 NA 0.6 NA ...
+ #get summary stats
+> summary(USDA)
+       ID       
+ Min.   : 1001  
+ 1st Qu.: 8387  
+ Median :13294  
+ Mean   :14260  
+ 3rd Qu.:18337  
+ Max.   :93600  
+                
+                                                       Description  
+ BEEF,CHUCK,UNDER BLADE CNTR STEAK,BNLESS,DENVER CUT,LN,0" FA:   2  
+ CAMPBELL,CAMPBELL'S SEL MICROWAVEABLE BOWLS,HEA             :   2  
+ OIL,INDUSTRIAL,PALM KERNEL (HYDROGENATED),CONFECTION FAT    :   2  
+ POPCORN,OIL-POPPED,LOFAT                                    :   2  
+ ABALONE,MIXED SPECIES,RAW                                   :   1  
+ ABALONE,MXD SP,CKD,FRIED                                    :   1  
+ (Other)                                                     :7048  
+    Calories        Protein         TotalFat       Carbohydrate   
+ Min.   :  0.0   Min.   : 0.00   Min.   :  0.00   Min.   :  0.00  
+ 1st Qu.: 85.0   1st Qu.: 2.29   1st Qu.:  0.72   1st Qu.:  0.00  
+ Median :181.0   Median : 8.20   Median :  4.37   Median :  7.13  
+ Mean   :219.7   Mean   :11.71   Mean   : 10.32   Mean   : 20.70  
+ 3rd Qu.:331.0   3rd Qu.:20.43   3rd Qu.: 12.70   3rd Qu.: 28.17  
+ Max.   :902.0   Max.   :88.32   Max.   :100.00   Max.   :100.00  
+ NA's   :1       NA's   :1       NA's   :1        NA's   :1       
+     Sodium         SaturatedFat     Cholesterol          Sugar       
+ Min.   :    0.0   Min.   : 0.000   Min.   :   0.00   Min.   : 0.000  
+ 1st Qu.:   37.0   1st Qu.: 0.172   1st Qu.:   0.00   1st Qu.: 0.000  
+ Median :   79.0   Median : 1.256   Median :   3.00   Median : 1.395  
+ Mean   :  322.1   Mean   : 3.452   Mean   :  41.55   Mean   : 8.257  
+ 3rd Qu.:  386.0   3rd Qu.: 4.028   3rd Qu.:  69.00   3rd Qu.: 7.875  
+ Max.   :38758.0   Max.   :95.600   Max.   :3100.00   Max.   :99.800  
+ NA's   :84        NA's   :301      NA's   :288       NA's   :1910    
+    Calcium             Iron           Potassium          VitaminC       
+ Min.   :   0.00   Min.   :  0.000   Min.   :    0.0   Min.   :   0.000  
+ 1st Qu.:   9.00   1st Qu.:  0.520   1st Qu.:  135.0   1st Qu.:   0.000  
+ Median :  19.00   Median :  1.330   Median :  250.0   Median :   0.000  
+ Mean   :  73.53   Mean   :  2.828   Mean   :  301.4   Mean   :   9.436  
+ 3rd Qu.:  56.00   3rd Qu.:  2.620   3rd Qu.:  348.0   3rd Qu.:   3.100  
+ Max.   :7364.00   Max.   :123.600   Max.   :16500.0   Max.   :2400.000  
+ NA's   :136       NA's   :123       NA's   :409       NA's   :332       
+    VitaminE          VitaminD       
+ Min.   :  0.000   Min.   :  0.0000  
+ 1st Qu.:  0.120   1st Qu.:  0.0000  
+ Median :  0.270   Median :  0.0000  
+ Mean   :  1.488   Mean   :  0.5769  
+ 3rd Qu.:  0.710   3rd Qu.:  0.1000  
+ Max.   :149.400   Max.   :250.0000  
+ NA's   :2720      NA's   :2834      
+> USDA$Sodium
+   [1]   714   827     2  1395   560   629   842   690   621   700   604   364
+  [13]   344   330   330   406   321   965  1116   800   600   819   336   800
+  [25]   536   627   415   619   652   628   334  1529  1602   534   876    84
+  [37]   125  1200  1809   192   753  1671  1428  1370   966  1284  1552  1625
+  [49]    41    40    34    38     8    89    80    54    48    57    57    79
+...
+[6769]     4     4     4    20    NA   126   135    79    58    60    59    48
+[6781]    14     6     0   390   160   390   950    52   120   200   600   460
+[6793]   870    52    57   190    56    49    43   130    41    43    50     2
+[6805]  2850   118   130     4   420   671   511   810    86    51    14    13
+[6817]    14   109     7     4     4    NA     5     4     4     4     5     4
+[6829]     4   310    45    24    88   231   115    62    80    NA    25     2
+[6841]    60    10    45   298    27   663     9    27   404     0   104   711
+[6853]   670  1038  1108  2285    97    72   229  1103   193  1074    60   213
+[6865]     4   581   939   564   897   932  1180   838   878   773  1041   140
+[6877]     2   266   231    81    63    63  1257   105   689   814   788   168
+[6889]  1745    71  1528    45  1600     0   220   500   387   444   957   542
+[6901]  1587     3   314  1020   271     2   152   983   634     0    52   203
+[6913]   389   600   743    28   607  1209   710   867   208   939  1148    21
+[6925]     0   156    33     7     0   112     7   101   780    12   251   805
+[6937]   725     4     2   709   490   471   711   550   490   630   400   550
+[6949]   789   277   717  1674   626     7   428   385  1770  1200  1120    12
+[6961]    11   213    50   509   717    58   106    95   403   470  1430   505
+[6973]  1345    52    43   162    57   685    20    33     5    26   969   969
+[6985]   969   837   905    63   500    14     8   308    13   110    15    70
+[6997]   996   996    91  1030  1430     2   682    29    14   996   996    14
+[7009]     3   403     7   819     5    14  2962   400   707    15     1    42
+[7021]    35     2     5   380  9690    92   311    12    10    95    57    55
+[7033]   856   499   490    35   260   167    16   486   711     0     2  1297
+[7045]  1435  2838     2    12     0  3326  1765  4250    29    58  4450   667
+[7057]    70    68
+#max sodium value
+> which.max(USDA$Sodium)
+[1] 265
+#get names of headers
+> names(USDA)
+ [1] "ID"           "Description"  "Calories"     "Protein"      "TotalFat"    
+ [6] "Carbohydrate" "Sodium"       "SaturatedFat" "Cholesterol"  "Sugar"       
+[11] "Calcium"      "Iron"         "Potassium"    "VitaminC"     "VitaminE"    
+[16] "VitaminD"    
+#find name of #265
+> USDA$Description[265]
+[1] SALT,TABLE
+7054 Levels: ABALONE,MIXED SPECIES,RAW ABALONE,MXD SP,CKD,FRIED ... ZWIEBACK
+#HighSodium is new dataframe only has data with Sodium >10000mg
+> HighSodium = subset(USDA, Sodium>10000)
+#nrow - returns number of rows
+> nrow(HighSodium)
+[1] 10
+ #HighSodium$Description - gives names of the foods
+> HighSodium$Description
+ [1] SALT,TABLE                                             
+ [2] SOUP,BF BROTH OR BOUILLON,PDR,DRY                      
+ [3] SOUP,BEEF BROTH,CUBED,DRY                              
+ [4] SOUP,CHICK BROTH OR BOUILLON,DRY                       
+ [5] SOUP,CHICK BROTH CUBES,DRY                             
+ [6] GRAVY,AU JUS,DRY                                       
+ [7] ADOBO FRESCO                                           
+ [8] LEAVENING AGENTS,BAKING PDR,DOUBLE-ACTING,NA AL SULFATE
+ [9] LEAVENING AGENTS,BAKING SODA                           
+[10] DESSERTS,RENNIN,TABLETS,UNSWTND                        
+7054 Levels: ABALONE,MIXED SPECIES,RAW ABALONE,MXD SP,CKD,FRIED ... ZWIEBACK
+> #nrow - returns number of rows in dataframe
+> nrow(USDA)
+[1] 7058
+> #to get caviar index - use match function
+> match("CAVIAR", USDA$Description)
+[1] 4154
+> USDA$Sodium[4154]
+[1] 1500
+> USDA$Sodium[match("CAVIAR", USDA$Description)]
+[1] 1500
+> #shows you how to do it in one step - put match into sodium vector
+> 
