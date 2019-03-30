@@ -1,0 +1,26 @@
+ #use change dir to move to downloads folder
+ USDA = read.csv("USDA.csv")
+ #Check if the first food in the dataset has a higher amount of sodium compared to the average, compare it using the greater-than sign
+#to the mean of the Sodium vector,
+ USDA$Sodium[1] > mean(USDA$Sodium, na.rm=TRUE)
+[1] TRUE
+#do the same thing for the 50th item
+> USDA$Sodium[50] > mean(USDA$Sodium, na.rm=TRUE)
+[1] FALSE
+#now to check all 7000 put them in a vector
+HighSodium = USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE)
+#show structure of HighSodium
+str(HighSodium)
+#change type to numeric now it returns 0 and 1s vs TRUE and FALSE
+HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
+> str(HighSodium)
+#now associate it with USDA dataframe
+ USDA$HighSodium = as.numeric(USDA$Sodium > mean(USDA$Sodium, na.rm=TRUE))
+> str(USDA)
+#create HighProtein, etc
+USDA$HighProtein = as.numeric(USDA$Protein > mean(USDA$Protein, na.rm=TRUE))
+> USDA$TotalFat = as.numeric(USDA$TotalFat > mean(USDA$TotalFat, na.rm=TRUE))
+> USDA$Carbohydrate = as.numeric(USDA$Carbohydrate > mean(USDA$Carbohydrate, na.rm=TRUE))
+> str(USDA)
+
+ 
