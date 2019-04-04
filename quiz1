@@ -1,0 +1,56 @@
+How many rows of data (observations) are in this dataset?
+nrow(mvt)
+
+How many variables are in this dataset?
+names(mvt)
+
+Using the "max" function, what is the maximum value of the variable "ID"?
+max(mvt$ID, na.rm=TRUE)
+
+What is the minimum value of the variable "Beat"?
+min(mvt$Beat, na.rm=TRUE)
+
+How many observations have value TRUE in the Arrest variable (this is the number of crimes for which an arrest was made)?
+summary(mvt$Arrest)["TRUE"]
+
+How many observations have a LocationDescription value of ALLEY?
+summary(mvt$LocationDescription)["ALLEY"]
+
+In many datasets, like this one, you have a date field. Unfortunately, R does not automatically recognize entries that look like dates. We need to use a function in R to extract the date and time. Take a look at the first entry of Date (remember to use square brackets when looking at a certain entry of a variable).
+
+In what format are the entries in the variable Date?
+mvt$Date[1]
+Month/Day/Year Hour:Minute
+Now, let's convert these characters into a Date object in R. In your R console, type
+
+DateConvert = as.Date(strptime(mvt$Date, "%m/%d/%y %H:%M"))
+
+This converts the variable "Date" into a Date object in R. Take a look at the variable DateConvert using the summary function.
+
+What is the month and year of the median date in our dataset? Enter your answer as "Month Year", without the quotes. (Ex: if the answer was 2008-03-28, you would give the answer "March 2008", without the quotes.)
+DateConvert = as.Date(strptime(mvt$Date, "%m/%d/%y %H:%M"))
+> summary(DateConvert)
+
+#Now, let's extract the month and the day of the week, and add these variables to our data frame mvt. 
+#We can do this with two simple functions. Type the following commands in R:
+mvt$Month = months(DateConvert)
+mvt$Weekday = weekdays(DateConvert)
+#This creates two new variables in our data frame, Month and Weekday, and sets them equal to the month 
+#and weekday values that we can extract from the Date object. Lastly, replace the old Date variable with DateConvert by typing:
+mvt$Date = DateConvert
+Using the table command, answer the following questions.
+In which month did the fewest motor vehicle thefts occur?
+
+mvt$Month = months(DateConvert)
+> mvt$Weekday = weekdays(DateConvert)
+> mvt$Date = DateConvert
+
+table(mvt$Month)
+
+On which weekday did the most motor vehicle thefts occur?
+table(mvt$Weekday)
+
+#Each observation in the dataset represents a motor vehicle theft, and the Arrest variable indicates whether an arrest 
+#was later made for this theft. Which month has the largest number of motor vehicle thefts for which an arrest was made?
+table(mvt$Arrest,mvt$Month)
+
