@@ -1,0 +1,9 @@
+#Quiz
+#1. How many rows of data (observations) are in this dataset?
+getwd()
+[1] "C:/Users/Downloads"
+> mvt = read.csv("mvtWeek1.csv")
+> str(mvt)
+answer: 191641 
+#2. How many variables are in this dataset?
+answer: 11
