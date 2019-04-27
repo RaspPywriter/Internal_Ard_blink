@@ -7,3 +7,8 @@ getwd()
 answer: 191641 
 #2. How many variables are in this dataset?
 answer: 11
+#3.Using the "max" function, what is the maximum value of the variable "ID"? 
+ max(mvt$ID)
+[1] 9181151
+#4. What is the minimum value of the variable "Beat"?
+> min(mvt$Beat)
